@@ -52,8 +52,8 @@ $list[]= [
     "qty"=>2,
     "description"=>"San pham dang hot"
 ];
+echo "<ul>";
 foreach($list as $p){
-    echo "<br/>Thông tin sản phẩm:<br/>";
-    echo $p["name"]."-".$p["price"];
+    echo "<li>Thông tin sản phẩm:</li>";
+    echo "<li>".$p["name"]."-".$p["price"]."</li>";
 }
-// $list[0];
