@@ -10,8 +10,13 @@
     if($conn->connect_error){
       die("Connect database failed");
     }
-    die("Connect db successfuly");
   //2. query SQL
+    $sql = "SELECT * FROM products";
+    $result = $conn->query($sql);
+    $list = [];
+    while($row = $result->fetch_assoc()){
+      $list[] = $row;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,15 +37,17 @@
       <th scope="col">Name</th>
       <th scope="col">Price</th>
       <th scope="col">Description</th>
+      <th scope="col">Qty</th>
     </tr>
   </thead>
   <tbody>
     <?php foreach($list as $item):?>
     <tr>
-      <th scope="row">1</th>
+      <th scope="row"><?php echo $item["id"];?></th>
       <td><?php echo $item["name"];?></td>
       <td><?php echo $item["price"];?></td>
       <td><?php echo $item["description"];?></td>
+      <td><?php echo $item["qty"];?></td>
     </tr>
     <?php endforeach;?>
   </tbody>
