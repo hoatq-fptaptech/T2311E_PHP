@@ -1,3 +1,18 @@
+<?php
+  // query to DB 
+  //1. connect db
+    $host = "localhost";
+    $user = "root";
+    $pass = "root";
+    $db = "t2311e_php";
+
+    $conn = new mysqli($host,$user,$pass,$db);
+    if($conn->connect_error){
+      die("Connect database failed");
+    }
+    die("Connect db successfuly");
+  //2. query SQL
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,48 +24,25 @@
 
 </head>
 <body>
-    <?php
-        $list = [
-            [
-                "name"=>"Iphone 15",
-                "price"=>1000,
-                "description"=>"San pham dang hot"
-            ],
-            [
-                "name"=>"Iphone 15",
-                "price"=>1000,
-                "description"=>"San pham dang hot"
-            ]
-        ];
-    ?>
     <div class="container">
     <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Description</th>
     </tr>
   </thead>
   <tbody>
+    <?php foreach($list as $item):?>
     <tr>
       <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td><?php echo $item["name"];?></td>
+      <td><?php echo $item["price"];?></td>
+      <td><?php echo $item["description"];?></td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    <?php endforeach;?>
   </tbody>
 </table>
     </div>
