@@ -13,8 +13,9 @@
   //2. query SQL
      // 2.1. Lấy tham số
      $limit = isset($_GET["limit"]) && $_GET["limit"]!= "" ?$_GET["limit"]:20;
+     $search = isset($_GET["search"])?$_GET["search"]:"";
      //2.2. áp dụng giá trị tham số vào truy vấn
-    $sql = "SELECT * FROM products LIMIT $limit";
+    $sql = "SELECT * FROM products WHERE name LIKE '%$search%' LIMIT $limit";
     $result = $conn->query($sql);
     $list = [];
     while($row = $result->fetch_assoc()){
@@ -36,7 +37,7 @@
     <form action="/demo3.php" method="GET">
         <div class="row">
           <div class="col">
-          <input name="search" placeholder="Search" type="text" class="form-control"/>
+          <input value="<?php echo $search; ?>" name="search" placeholder="Search" type="text" class="form-control"/>
           </div>
           <div class="col">
             <input value="<?php echo $limit; ?>" name="limit" placeholder="Limit" type="number" class="form-control"/>
