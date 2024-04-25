@@ -49,6 +49,7 @@
     </form>
   </div>
   <div class="container">
+    <a href="/create_product.php">Create a new product</a>
     <table class="table">
   <thead>
     <tr>
@@ -57,6 +58,8 @@
       <th scope="col">Price</th>
       <th scope="col">Description</th>
       <th scope="col">Qty</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -67,6 +70,10 @@
       <td><?php echo $item["price"];?></td>
       <td><?php echo $item["description"];?></td>
       <td><?php echo $item["qty"];?></td>
+      <td><a href="/edit_product.php?id=<?php echo $item["id"]; ?>">Edit</a></td>
+      <td><a onclick="return confirm('Are you sure delete product?')" 
+          class="text-danger" href="/delete_product.php?id=<?php echo $item["id"]; ?>">
+          Delete</a></td>
     </tr>
     <?php endforeach;?>
   </tbody>
