@@ -1,6 +1,8 @@
 <?php
     require_once("functions/product.php");
     $newest_products = newest_products();
+    $best_sellers = best_sellers();
+    $hot_items = hot_items();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,11 +37,39 @@
         </div>
         <div class="container">
             <h2>Best sellers</h2>
-            
+            <div class="row">
+                <?php foreach($best_sellers as $item):?>
+                    <div class="col-3">
+                        <div class="card" style="width: 18rem;">
+                            <img src="<?php echo $item["thumbnail"] ?>" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $item["name"] ?></h5>
+                                <p class="card-text"><?php echo $item["description"] ?></p>
+                                <p class="text-danger"><?php echo $item["price"] ?></p>
+                                <a href="#" class="btn btn-primary">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach;?>    
+            </div>
         </div>
         <div class="container">
             <h2>Hot items</h2>
-            
+            <div class="row">
+                <?php foreach($hot_items as $item):?>
+                    <div class="col-3">
+                        <div class="card" style="width: 18rem;">
+                            <img src="<?php echo $item["thumbnail"] ?>" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $item["name"] ?></h5>
+                                <p class="card-text"><?php echo $item["description"] ?></p>
+                                <p class="text-danger"><?php echo $item["price"] ?></p>
+                                <a href="#" class="btn btn-primary">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach;?>    
+            </div>
         </div>
     </main>
 </body>
