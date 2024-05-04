@@ -23,7 +23,9 @@
                 <?php foreach($newest_products as $item):?>
                     <div class="col-3">
                         <div class="card" style="width: 18rem;">
+                            <a href="/detail.php?id=<?php echo $item["id"];?>">
                             <img src="<?php echo $item["thumbnail"] ?>" class="card-img-top" alt="...">
+                            </a>
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $item["name"] ?></h5>
                                 <p class="card-text"><?php echo $item["description"] ?></p>
