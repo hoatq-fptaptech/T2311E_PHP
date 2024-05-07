@@ -12,7 +12,7 @@
     <?php include_once("html/styles.php");?>
 </head>
 <body>
-<header>
+    <header>
     </header>
     <?php include_once("html/nav.php");?>
     <main class="main">
@@ -38,6 +38,13 @@
                         </tr>
                     <?php endforeach;?>    
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6"class="text-end">
+                            <a href="/checkout.php"class="btn btn-outline-danger">Checkout</a>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </main>
