@@ -1,5 +1,7 @@
 <?php session_start();
+    require_once("functions/cart.php");
     $cart = isset($_SESSION["cart"])?$_SESSION["cart"]:[];
+    $products = get_cart();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,10 +27,14 @@
                     <th>Total</th>
                 </thead>
                 <tbody>
-                    <?php foreach($cart as $id=>$qty):?>
+                    <?php foreach($products as $item):?>
                         <tr>
-                            <td><?php echo $id ?></td>
-                            <td><?php echo $qty ?></td>
+                            <td><?php echo $item["id"] ?></td>
+                            <td><img src="<?php echo $item["thumbnail"] ?>" class="thumbnail" width="80"/></td>
+                            <td><?php echo $item["name"] ?></td>
+                            <td><?php echo $item["price"] ?></td>
+                            <td><?php echo $cart[$item["id"]] ?></td>
+                            <td><?php echo $item["price"] * $cart[$item["id"]] ?></td>
                         </tr>
                     <?php endforeach;?>    
                 </tbody>
