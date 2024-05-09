@@ -33,4 +33,14 @@ $order_info = [
     "shipping_method" =>$shipping_method,
     "payment_method" =>$payment_method,
 ];
-order_create($order_info,$products,$cart);
+// create order
+$$order_id = order_create($order_info,$products,$cart);
+// paypal
+
+// email
+
+// clear cart
+$_SESSION["cart"] = [];
+// redirect to thank you
+header("Location: /thank_you.php?order_id=$order_id");
+
