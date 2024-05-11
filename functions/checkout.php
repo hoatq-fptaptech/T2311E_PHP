@@ -26,3 +26,13 @@ function order_create($order_info,$products,$cart)  {
     }
     return $order_id;
 }
+
+function updateStatusPaid($order_id){
+    $sql = "update orders SET status = 'PAYMENT_SUCCESS' where id = $order_id";
+    query($sql);
+}
+
+function updateStatusUnPaid($order_id){
+    $sql = "update orders SET status = 'PAYMENT_FAIL' where id = $order_id";
+    query($sql);
+}

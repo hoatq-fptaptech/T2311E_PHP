@@ -2,6 +2,7 @@
 session_start();
 require_once("functions/cart.php");
 require_once("functions/checkout.php");
+require_once("functions/paypal.php");
 
 $customer_name = $_POST['customer_name'];
 $tel = $_POST["tel"];
@@ -34,13 +35,30 @@ $order_info = [
     "payment_method" =>$payment_method,
 ];
 // create order
-$$order_id = order_create($order_info,$products,$cart);
-// paypal
-
+$order_id = order_create($order_info,$products,$cart);
 // email
 
 // clear cart
 $_SESSION["cart"] = [];
-// redirect to thank you
-header("Location: /thank_you.php?order_id=$order_id");
+// paypal
+if($payment_method == "PAYPAL"){
+    // Thông tin tài khoản PayPal
+    $client_id = 'AZFEOYBfFE-wy0qQI2cwemlCTeSwUM0PoadhQ23nJbHoFSxQQzW7w3OsHROlaS9nnYOg87jDxBVilTht';
+    $client_secret = 'EKR8pJZBBJDAC_oTl7zUQYPSpyh4XvhmHSQm8uKDPOBBbjDFtnjCKyJxzb20ciT9zBp8_tPT_S62uNJi';
+
+    // Địa chỉ URL của trang xử lý thanh toán
+    $success_url = "http://localhost:8888/success_paypal.php?order_id=$order_id";
+    $cancel_url = "http://localhost:8888/cancel_paypal.php?order_id=$order_id";
+    // Lấy access token
+    $access_token = get_access_token($client_id, $client_secret);
+    // Tạo thanh toán
+    $payment = create_payment($access_token, $success_url,$cancel_url,$grand_total);
+    // Redirect tới trang thanh toán PayPal
+    header('Location: ' . $payment['links'][1]['href']);
+}else{
+    // redirect to thank you
+    header("Location: /thank_you.php?order_id=$order_id");
+}
+
+
 
