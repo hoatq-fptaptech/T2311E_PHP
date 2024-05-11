@@ -37,7 +37,27 @@ $order_info = [
 // create order
 $order_id = order_create($order_info,$products,$cart);
 // email
+// Địa chỉ email người nhận
+$to_email = "hoatq4@fpt.edu.vn";
 
+// Tiêu đề email
+$subject = "Thông tin đơn hàng #$order_id";
+
+// Nội dung email
+$message = "Bạn vừa đặt một đơn hàng với số tiền: $grand_total";
+
+// Địa chỉ email người gửi
+$from_email = "hoatq4@fpt.edu.vn";
+
+// Tiêu đề email được gửi
+$headers = "From: $from_email";
+
+// Gửi email
+if (mail($to_email, $subject, $message, $headers)) {
+    echo "Email sent successfully to $to_email";
+} else {
+    echo "Email sending failed...";
+}
 // clear cart
 $_SESSION["cart"] = [];
 // paypal
