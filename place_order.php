@@ -43,8 +43,8 @@ $_SESSION["cart"] = [];
 // paypal
 if($payment_method == "PAYPAL"){
     // Thông tin tài khoản PayPal
-    $client_id = 'AZFEOYBfFE-wy0qQI2cwemlCTeSwUM0PoadhQ23nJbHoFSxQQzW7w3OsHROlaS9nnYOg87jDxBVilTht';
-    $client_secret = 'EKR8pJZBBJDAC_oTl7zUQYPSpyh4XvhmHSQm8uKDPOBBbjDFtnjCKyJxzb20ciT9zBp8_tPT_S62uNJi';
+    $client_id = 'YOUR_CLIENT_ID';
+    $client_secret = 'YOUR_SECRET_KEY';
 
     // Địa chỉ URL của trang xử lý thanh toán
     $success_url = "http://localhost:8888/success_paypal.php?order_id=$order_id";
