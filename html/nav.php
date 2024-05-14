@@ -22,7 +22,13 @@
         <a class="border border-light p-2 ms-2 position-relative" href="/cart.php"><i class="bi bi-cart"></i>
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
         <?php echo isset($_SESSION["cart"])?count($_SESSION["cart"]):0; ?></span></a>
-        <a class="p-2 ms-2" href="/register.php"> Register</a>
+        <?php if(isset($_SESSION["auth"]) && $_SESSION["auth"] != null):?>
+          <a class="p-2 ms-2" href="/profile.php"><?php echo $_SESSION["auth"]["full_name"];?></a>
+          <a class="p-2 ms-2" href="/logout.php">Logout</a>
+        <?php else:?>
+          <a class="p-2 ms-2" href="/register.php"> Register</a>
+          <a class="p-2 ms-2" href="/login.php"> Login</a>
+        <?php endif;?>
       </form>
     </div>
   </div>
