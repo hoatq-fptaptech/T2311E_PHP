@@ -22,6 +22,7 @@
         <a class="border border-light p-2 ms-2 position-relative" href="/cart.php"><i class="bi bi-cart"></i>
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
         <?php echo isset($_SESSION["cart"])?count($_SESSION["cart"]):0; ?></span></a>
+        <a class="p-2 ms-2" href="/register.php"> Register</a>
       </form>
     </div>
   </div>
